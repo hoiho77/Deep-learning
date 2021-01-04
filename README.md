@@ -1,9 +1,13 @@
-# Implement of CNN model using tensorflow & pytorch
+# Implement and train/test of CNN model using tensorflow & pytorch
 cnn model architecture build
 - AlexNet
 
 # Environments
+- tensorflow
 tensorflow , numpy
+
+- pytorch
+pytorch
 
 # Training
 
