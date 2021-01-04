@@ -4,10 +4,10 @@ cnn model architecture build
 
 # Environments
 - tensorflow
-tensorflow , numpy
+-- tensorflow , numpy
 
 - pytorch
-pytorch
+-- pytorch
 
 # Training
 
