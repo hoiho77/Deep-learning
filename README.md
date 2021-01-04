@@ -19,10 +19,7 @@ python evaluate.py
 performance is based on accuracy, f1-score
 
 Model|Epoch|Lr|Accuracy|F1-score|Dataset|
-
 ---|---|---|---|---|---|
-
-AlexNet|50|0.001|||
-
----|---|---|---|---|---|
----|---|---|---|---|---|
+AlexNet|50|0.001|-|-|
+-|-|-|-|-|-|
+-|-|-|-|-|-|
