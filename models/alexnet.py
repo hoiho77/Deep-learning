@@ -1,3 +1,4 @@
+
 def AlexNet(): 
     model = keras.models.Sequential([
         keras.layers.Conv2D(filters=96, kernel_size=(11,11), strides=(4,4), activation='relu', input_shape=(227,227,3)),
