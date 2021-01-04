@@ -1,6 +1,7 @@
-# CNN-modeling
+# Tensorflow - Image classification model based on CNN
 cnn model architecture build
+- AlexNet
 
-#Environments
+# Environments
 tensorflow , numpy
 
