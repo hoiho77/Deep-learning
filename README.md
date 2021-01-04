@@ -16,16 +16,6 @@ To train the model, run 'python train.py'
 -- batch : batchsize
 ```
 
-# Evaluate
-
-To evaluate the model, run 'python evaluate.py'
-```
--- model : model you want to train
--- lr    : learning rate
--- epoch : epoch
--- batch : batchsize
-```
-
 # Performance Result
 performance is based on top1-accuracy
 
