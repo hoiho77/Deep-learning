@@ -19,8 +19,8 @@ To train the model, run 'python train.py'
 # Performance Result
 performance is based on top1-accuracy
 
-Model|Epoch|Lr|top1-accuracy|ModelSize|Dataset|
----|---|---|---|---|---|
-AlexNet|50|0.001|-|-|
+Model|Epoch|Lr|top1-accuracy|Dataset|
+---|---|---|---|---|
+AlexNet|50|0.001|-|cifar-10|
 -|-|-|-|-|-|
 -|-|-|-|-|-|
