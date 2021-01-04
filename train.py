@@ -39,4 +39,5 @@ if__name__ == '__main__' :
     
     model.save('./models')
     utils.graph(history)
-    
+   
+    print("Accuracy: %2.2f" % (model.evaluate(test_ds)[1]))
