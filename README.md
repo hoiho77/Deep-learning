@@ -1,4 +1,4 @@
-# Implement/Train/Test of CNN model on CIFAR-10 using tensorflow(keras)
+# Implement of CNN model on CIFAR-10 using tensorflow(keras)
 cnn model architecture build
 - AlexNet
 
