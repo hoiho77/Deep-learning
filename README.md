@@ -4,10 +4,7 @@ cnn model architecture build
 
 # Environments
 - tensorflow
--- tensorflow , numpy
-
-- pytorch
--- pytorch
+-- tensorflow==2.2.0 , Keras==2.4.3
 
 # Training
 
