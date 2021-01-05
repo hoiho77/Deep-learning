@@ -17,7 +17,7 @@ To train the model, run 'python train.py'
 
 # Performance Result
 performance is based on top1-accuracy
-(Training are performed on the 60% of cifar-10 datasets due to the limits of memory)
+(Training is performed on the 60% of cifar-10 datasets due to the limits of memory)
 
 Model|Epoch|Lr|top1-accuracy|Dataset|
 ---|---|---|---|---|
