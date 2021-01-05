@@ -20,7 +20,6 @@ def AlexNet():
     keras.layers.Dropout(0.5),
     keras.layers.Dense(4096, activation='relu'),
     keras.layers.Dropout(0.5),
-    keras.layers.Dense(10, activation='softmax')
-])
+    keras.layers.Dense(10, activation='softmax')])
     return model
 
