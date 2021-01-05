@@ -1,12 +1,27 @@
+import tensorflow as tf
+from tensorflow import keras
+import matplotlib.pyplot as plt
+import time
+import os
+
 def load_model(model_name):
   if model_name == 'alexnet' :
-    from models.alexnet import Alexnet
-    model = Alexnet()
+    from models.alexnet import AlexNet
+    model = AlexNet()
     return model
   
   else : 
     print("The model_name is not exists.")
 
+def get_run_logdir():
+    root_logdir = os.path.join(os.curdir, "logs\\fit\\")
+    run_id = time.strftime("run_%Y_%m_%d-%H_%M_%S")
+    return os.path.join(root_logdir, run_id)
+
+def process_images(image, label):
+    image = tf.image.per_image_standardization(image)
+    image = tf.image.resize(image, (227,227))
+    return image, label
     
 def load_datasets(Batch_size) :
     (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
