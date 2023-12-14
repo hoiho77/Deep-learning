@@ -19,7 +19,7 @@ class preprocessing_data():
     # 시계열 데이터를 모델에 입력할 형태로 변환
     def get_sequence(self):
         X, y = [], []
-        if self.multi==True:
+        if self.multi==True: # 다변량
           for i in range(0, len(self.data) - self.window - (self.out_window-1), self.stride):
 
             if self.model == 'tf':
@@ -30,12 +30,11 @@ class preprocessing_data():
             else:
               seq = self.data.iloc[i:i+self.window, :-1].values #ex: t-30~t-1 , 독립변수
               target = self.data.iloc[i+self.window:i+self.window+self.out_window, -1].values # t t+1 t+2 (out_window=3), 종속변수
-
-
+                
             X.append(seq)
             y.append(target)
 
-        else : # 단변량
+        else: # 단변량
           self.data= self.data.iloc[:,-1]
           for i in range(len(self.data) - self.window - (self.out_window-1)):
             if self.model == 'tf':
