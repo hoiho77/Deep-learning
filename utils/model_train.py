@@ -1,8 +1,9 @@
+import os
+import numpy as np
 import torch
 import torch.optim as optim
 from utils.build_model import *
 from torchsummary import summary
-import os
 import torch.optim as optim
 
 def train_rnn_model(args, rnn_data, model_nm, logger):
@@ -40,7 +41,7 @@ def train_rnn_model(args, rnn_data, model_nm, logger):
     if not os.path.exists(model_path):
         os.makedirs(f"{model_path}")
 
-    min_val_loss = 100000000
+    min_val_loss = np.inf
 
     for epoch in range(num_epochs):
       running_loss =0
@@ -118,10 +119,12 @@ def train_tstrans(args, tf_data, logger):
     #scheduler = optim.lr_scheduler.StepLR(transformer_optimizer, step_size=5, gamma=0.7)
 
     logger.info(f"transformer_model : {sum(p.numel() for p in transformer_model.parameters() if p.requires_grad)}")
-    
+
+    # 모델로 추론만 할 경우는 model_path 및 mode='test'지정
     if args.mode=='test':
       return transformer_model, None, None
 
+    # 학습을 추가로 시키고 싶은 모델이 있을 경우는 model_path 및 mode='train'지정
     if args.model_path!=None:
       transformer_model.load_state_dict(torch.load(f"{args.model_path}"))
 
@@ -132,8 +135,7 @@ def train_tstrans(args, tf_data, logger):
         os.makedirs(f"{model_path}")
         
     best_model =''
-
-    min_val_loss = 100000000
+    min_val_loss = np.inf
     for epoch in range(num_epochs):
         running_loss = 0
         transformer_model.train()
