@@ -43,7 +43,7 @@ def rnn_result(args, data, rnn_data, model, model_nm, logger):
         ax.plot(data.index[-len(rnn_data.test_targets):],  prediction[:, i].tolist())
         logger.info(f'{model_nm} loss for t+{i + 1}시점: {args.criterion(prediction[:, i], rnn_data.test_targets[:, i])}')
     plt.savefig(f'{args.log_path}/{model_nm}_testset_prediction_plot_uni.png')
-    
+    plt.clf()
 
 def tf_result(args, data, tf_data, tf_model, logger):
     model_nm = args.model_nm
@@ -95,3 +95,5 @@ def tf_result(args, data, tf_data, tf_model, logger):
         plt.suptitle('Prediction Graph')
 
     plt.savefig(f'{args.log_path}/{model_nm}_testset_prediction_plot_multi.png')
+    plt.clf()
+
