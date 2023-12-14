@@ -6,6 +6,9 @@ import torch
 plt.rcParams['axes.unicode_minus'] = False
 
 def rnn_result(args, data, rnn_data, model, model_nm, logger):
+    torch.cuda.empty_cache()
+    torch.cuda.max_memory_allocated()
+    
     device = args.device
     if args.mode =='train':
       model.load_state_dict(torch.load(f"{args.log_path}/model/{args.best_model}"))
@@ -31,6 +34,7 @@ def rnn_result(args, data, rnn_data, model, model_nm, logger):
     if args.output_window == 1:
         fig, ax = plt.subplots(1, 1)
         axes = [ax] 
+        
     else:
         fig, axes = plt.subplots(args.output_window, 1)
 
@@ -39,22 +43,7 @@ def rnn_result(args, data, rnn_data, model, model_nm, logger):
         ax.plot(data.index[-len(rnn_data.test_targets):],  prediction[:, i].tolist())
         logger.info(f'{model_nm} loss for t+{i + 1}시점: {args.criterion(prediction[:, i], rnn_data.test_targets[:, i])}')
     plt.savefig(f'{args.log_path}/{model_nm}_testset_prediction_plot_uni.png')
-
-    #elif args.multi == False:
-    #        prediction = model(rnn_data.test_sequences.unsqueeze(-1).to(device))
-    #        logger.info(f'전체 Test Loss: {args.criterion(prediction, rnn_data.test_targets.to(device))}')
-    #
-    #        if args.output_window == 1:
-    #            fig, ax = plt.subplots(1, 1)
-    #            axes = [ax]  
-    #        else:
-    #            fig, axes = plt.subplots(args.output_window, 1)
-    #        for i, ax in enumerate(axes):
-    #            ax.plot(data.index[-len(rnn_data.test_targets):], rnn_data.test_targets[:, i])
-    #            ax.plot(data.index[-len(rnn_data.test_targets):], prediction[:, i].tolist())
-    #            logger.info(f'{model_nm} loss for t+{i + 1}시점: {args.criterion(prediction[:, i], rnn_data.test_targets[:, i].to(device))}')
-    #
-    #        plt.savefig(f'{args.log_path}/{model_nm}_testset_prediction_plot_multi.png')
+    
 
 def tf_result(args, data, tf_data, tf_model, logger):
     model_nm = args.model_nm
@@ -62,11 +51,10 @@ def tf_result(args, data, tf_data, tf_model, logger):
     
     torch.cuda.empty_cache()
     torch.cuda.max_memory_allocated()
-    import gc
-    gc.collect()
-    model_size = sum([p.numel() * p.element_size() for p in tf_model.parameters()]) / 1024 / 1024
-    print(model_size) # 0.00041961669921875
-
+    
+    #import gc
+    #gc.collect()
+    
     if args.mode =='train':
       tf_model.load_state_dict(torch.load(f"{args.log_path}/model/{args.best_model}"))
     elif args.mode =='test':
@@ -107,9 +95,3 @@ def tf_result(args, data, tf_data, tf_model, logger):
         plt.suptitle('Prediction Graph')
 
     plt.savefig(f'{args.log_path}/{model_nm}_testset_prediction_plot_multi.png')
-    #plt.show()
-
-    #plt.plot([i for i in range(0, len(prediction))], tf_data.test_targets.cpu()[:, -1])
-    #plt.plot([i for i in range(0, len(prediction))], prediction.cpu().detach().numpy()[:, -1, :].flatten())
-    #plt.title('Test 예측 결과')
-    #plt.savefig(f'{args.log_path}/result/{args.model_nm}_multi_{args.input_window}_{args.output_window}_{args.num_epochs}_{args.lr}.png')
