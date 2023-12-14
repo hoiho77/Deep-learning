@@ -64,19 +64,12 @@ class preprocessing_data():
           X_train, X_valid, y_train, y_valid = train_test_split(X_T, y_T, test_size=0.2, shuffle=False)
 
         else :
-          X_train = X[:-1500]
-          y_train = y[:-1500]
-          X_valid = X[int((len(X)-1500)*0.8):-1500]
-          y_valid = y[int((len(X)-1500)*0.8):-1500]
-          X_test = X[-1500:]
-          y_test = y[-1500:]
-
-          #X_train = X[:int((len(X)*0.8)*0.7)]
-          #y_train = y[:int((len(X)*0.8)*0.7)]
-          #X_valid = X[int((len(X)*0.8)*0.7):int(len(X)*0.8)]
-          #y_valid = y[int((len(X)*0.8)*0.7):int(len(X)*0.8)]
-          #X_test = X[int(len(X)*0.8):]
-          #y_test = y[int(len(X)*0.8):]
+          X_train = X[:int((len(X)*0.8)*0.7)]
+          y_train = y[:int((len(X)*0.8)*0.7)]
+          X_valid = X[int((len(X)*0.8)*0.7):int(len(X)*0.8)]
+          y_valid = y[int((len(X)*0.8)*0.7):int(len(X)*0.8)]
+          X_test = X[int(len(X)*0.8):]
+          y_test = y[int(len(X)*0.8):]
 
         self.train_sequences, self.train_targets = self.transform_to_tensor(X_train, y_train)
         self.valid_sequences, self.valid_targets = self.transform_to_tensor(X_valid, y_valid)
